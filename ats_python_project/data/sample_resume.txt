@@ -1,0 +1,72 @@
+John Smith
+Software Developer
+
+Contact Information:
+Email: john.smith@email.com
+Phone: (555) 123-4567
+LinkedIn: linkedin.com/in/johnsmith
+GitHub: github.com/johnsmith
+
+Professional Summary:
+Experienced software developer with 5 years of experience in full-stack development. 
+Proficient in Python, JavaScript, and modern web technologies. Strong background in 
+database design and API development.
+
+Technical Skills:
+- Programming Languages: Python, JavaScript, Java, C++
+- Web Technologies: React, Node.js, HTML5, CSS3
+- Databases: PostgreSQL, MySQL, MongoDB
+- Cloud Platforms: AWS, Azure
+- Tools: Git, Docker, Jenkins
+- Frameworks: Django, Flask, Express.js
+
+Professional Experience:
+
+Senior Software Developer | TechCorp Inc. | 2021 - Present
+- Developed and maintained web applications using Python and React
+- Designed RESTful APIs serving 10,000+ daily users
+- Implemented automated testing and CI/CD pipelines
+- Mentored junior developers and conducted code reviews
+
+Software Developer | StartupXYZ | 2019 - 2021
+- Built scalable web applications using Django and PostgreSQL
+- Collaborated with cross-functional teams in Agile environment
+- Optimized database queries reducing response time by 40%
+- Participated in architecture decisions and technical planning
+
+Junior Developer | WebSolutions | 2018 - 2019
+- Developed responsive web interfaces using HTML, CSS, and JavaScript
+- Maintained legacy systems and implemented bug fixes
+- Learned modern development practices and version control
+
+Education:
+Bachelor of Science in Computer Science
+State University | 2014 - 2018
+GPA: 3.7/4.0
+
+Relevant Coursework:
+- Data Structures and Algorithms
+- Database Systems
+- Software Engineering
+- Web Development
+
+Certifications:
+- AWS Certified Developer Associate (2022)
+- MongoDB Certified Developer (2021)
+
+Projects:
+E-commerce Platform (2022)
+- Built full-stack e-commerce application using React and Django
+- Integrated payment processing and inventory management
+- Deployed on AWS with auto-scaling capabilities
+
+Task Management API (2021)
+- Developed RESTful API using Node.js and Express
+- Implemented JWT authentication and role-based access control
+- Created comprehensive API documentation
+
+Additional Information:
+- Strong problem-solving and analytical skills
+- Excellent communication and teamwork abilities
+- Passionate about learning new technologies
+- Active contributor to open-source projects

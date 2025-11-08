@@ -1,0 +1,200 @@
+================================================================================
+                    📝 CANDIDATE MODE - QUICK START
+================================================================================
+
+                    Improve YOUR Resume with AI Coaching!
+
+================================================================================
+                    ⚡ 3-MINUTE SETUP
+================================================================================
+
+1. Start LM Studio (if not running)
+   - Open LM Studio
+   - Load model: google/gemma-3n-e4b
+   - Click "Start Server"
+
+2. Add YOUR resume
+   - Put your resume PDF in: data/resumes/
+   - Only 1 resume recommended for focused feedback
+
+3. Add target job description
+   - Edit: data/job_description.txt
+   - Paste the job you're applying for
+
+4. Run Interactive ATS
+   - Double-click: RUN_INTERACTIVE_ATS.bat
+   - OR run: python interactive_ats.py
+
+5. Select Candidate Mode
+   - When prompted, type: 2
+   - Press Enter
+
+DONE! Now ask questions about YOUR resume! 🎉
+
+================================================================================
+                    💡 WHAT TO ASK
+================================================================================
+
+UNDERSTANDING YOUR SCORE:
+→ "Why did I get this score?"
+→ "What are my biggest weaknesses?"
+→ "Which areas hurt my score the most?"
+
+IMPROVING RESUME POINTS:
+→ "How can I rewrite my experience at [Company]?"
+→ "Show me before/after for my bullet points"
+→ "Take my first work experience and improve it"
+
+ADDING SKILLS:
+→ "Which technical skills should I add?"
+→ "What keywords am I missing?"
+→ "How can I better showcase my Python expertise?"
+
+GETTING TO 90%+:
+→ "How can I get to 90%+ match?"
+→ "What 3 changes would have the biggest impact?"
+→ "What should I remove from my resume?"
+
+================================================================================
+                    🎯 EXAMPLE CONVERSATION
+================================================================================
+
+You: Why did I get 72%?
+
+AI: Your score is 72% mainly because:
+    1. Missing cloud experience (AWS/Azure) - job requires it
+    2. Experience described generically without metrics
+    3. Missing key technologies: Docker, Kubernetes
+    4. No leadership/mentoring mentioned
+    
+    Your strengths are solid Python skills and education,
+    but the gaps in cloud and quantified achievements hurt you.
+
+You: How can I rewrite my first work experience?
+
+AI: BEFORE:
+    Software Developer at ABC Corp (2021-2023)
+    • Developed web applications
+    • Worked with team
+    • Fixed bugs
+    
+    AFTER:
+    Full-Stack Software Developer at ABC Corp (2021-2023)
+    • Architected 5 Python/Django applications serving 50K+ users,
+      reducing load time by 40% through Redis caching
+    • Led team of 3 developers in Agile sprints, delivering
+      features 25% faster than previous quarters
+    • Resolved 200+ production bugs and refactored legacy code,
+      improving test coverage from 45% to 85%
+    
+    Why better: Specific tech, quantified impact, shows leadership
+
+You: What 3 changes would boost my score most?
+
+AI: TOP 3 HIGH-IMPACT CHANGES:
+    
+    1. ADD CLOUD EXPERIENCE (+15% score)
+       - If you used AWS/Azure, add specific examples
+       - Mention: EC2, S3, Lambda, RDS, CloudFormation
+       - If no experience, get AWS certification
+    
+    2. QUANTIFY EVERYTHING (+10% score)
+       - Add numbers to every bullet point
+       - Users served, performance gains, cost savings
+       - Scale: data volume, traffic, team size
+    
+    3. EMPHASIZE LEADERSHIP (+8% score)
+       - Job wants team leadership
+       - Reframe collaboration as "Led team of X"
+       - Add: mentoring, code reviews, decisions made
+    
+    Make these changes → expect 88-95% score!
+
+================================================================================
+                    ✅ BEST PRACTICES
+================================================================================
+
+DO:
+✓ Be specific: "How do I improve my Python experience?"
+✓ Ask for examples: "Show me before/after"
+✓ Get priorities: "What 3 changes matter most?"
+✓ Iterate: Ask follow-ups to dig deeper
+
+DON'T:
+✗ Ask vague questions: "How do I improve?"
+✗ Expect full rewrite at once
+✗ Add false information to resume
+✗ Ignore job-specific requirements
+
+================================================================================
+                    🎮 COMMANDS
+================================================================================
+
+While chatting:
+- Type your question and press Enter
+- 'help' or 'h' - Show help menu
+- 'summary' or 's' - Quick score recap
+- 'quit' or 'q' - Exit
+
+================================================================================
+                    🔄 ITERATE TO PERFECTION
+================================================================================
+
+WORKFLOW:
+1. Run analysis → Get score (e.g., 72%)
+2. Ask questions → Get specific advice
+3. Update resume → Make changes
+4. Run again → See new score (e.g., 85%)
+5. Repeat until 90%+!
+
+TYPICAL SESSIONS:
+- Session 1: Understand weaknesses (10-15 questions)
+- Session 2: Improve work experience (5-10 questions)
+- Session 3: Optimize skills section (5 questions)
+- Session 4: Final polish (3-5 questions)
+
+================================================================================
+                    💪 REAL RESULTS
+================================================================================
+
+Typical improvements:
+- Before: 65-75% match
+- After 1 session: 78-85% match
+- After 2-3 sessions: 88-95% match
+
+Time investment:
+- 20-30 minutes per session
+- 2-3 sessions total
+- 1-2 hours to 90%+ match!
+
+Compare to:
+- Hiring resume writer: $200-500
+- Trial and error: Weeks of guessing
+- AI coaching: FREE + INSTANT! 🎉
+
+================================================================================
+                    📚 MORE HELP
+================================================================================
+
+Detailed guide:
+→ Read: CANDIDATE_MODE_GUIDE.md
+
+Interactive ATS overview:
+→ Read: INTERACTIVE_GUIDE.md
+
+General setup:
+→ Read: GET_STARTED.md
+
+================================================================================
+                    🚀 START NOW!
+================================================================================
+
+1. Put YOUR resume in: data/resumes/
+2. Add job description to: data/job_description.txt
+3. Run: python interactive_ats.py
+4. Select mode: 2 (Candidate Mode)
+5. Ask questions and improve!
+
+Your dream job is waiting! 🎯
+
+================================================================================

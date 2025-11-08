@@ -1,0 +1,76 @@
+========================================
+SIMPLE ATS MATCHER - SETUP INSTRUCTIONS
+========================================
+
+Follow these steps to use the ATS system:
+
+STEP 1: Install Required Package
+---------------------------------
+Open Command Prompt or PowerShell and run:
+
+    pip install PyPDF2
+
+(This is the only package needed for the simple ATS)
+
+
+STEP 2: Add Your Files
+-----------------------
+1. Place your PDF resumes in this folder:
+   ats_python_project/data/resumes/
+
+2. Edit the job description file:
+   ats_python_project/data/job_description.txt
+   
+   (A sample job description is already there)
+
+
+STEP 3: Configure Paths (Optional)
+-----------------------------------
+If you want to use different folders, edit:
+   ats_python_project/ats_config.txt
+
+Change these lines:
+   RESUME_FOLDER=./data/resumes
+   JOB_DESCRIPTION_FILE=./data/job_description.txt
+
+
+STEP 4: Run the ATS
+--------------------
+Option A - Double-click:
+   RUN_ATS.bat
+
+Option B - Command line:
+   cd ats_python_project
+   python simple_ats.py
+
+
+WHAT YOU'LL SEE:
+----------------
+For each resume, you'll get:
+✓ Overall ATS Match Score (0-100%)
+✓ Skills Match, Experience Match, Keyword Density
+✓ List of matching skills
+✓ List of missing required skills
+✓ Summary ranking all candidates
+
+The system works exactly like real company ATS systems!
+
+
+TROUBLESHOOTING:
+----------------
+Q: "No PDF files found"
+A: Make sure PDFs are in data/resumes/ folder
+
+Q: "Job description file not found"
+A: Create data/job_description.txt with your job posting
+
+Q: "Could not extract text from PDF"
+A: PDF might be scanned image - needs text-based PDF
+
+Q: "Module not found: PyPDF2"
+A: Run: pip install PyPDF2
+
+
+NEED HELP?
+----------
+Check README_SIMPLE_ATS.md for detailed documentation

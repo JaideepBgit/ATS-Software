@@ -1,0 +1,30 @@
+# Frontend Dockerfile for Resume-Matcher
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY Resume-Matcher/package*.json ./
+COPY Resume-Matcher/apps/frontend/package*.json ./apps/frontend/
+
+# Install dependencies
+RUN npm ci
+RUN cd apps/frontend && npm ci
+
+# Copy application code
+COPY Resume-Matcher/ .
+
+# Create .env.local for frontend
+RUN echo "NEXT_PUBLIC_API_URL=http://localhost:8888" > .env.local
+RUN echo "PORT=3333" >> .env.local
+
+# Expose port
+EXPOSE 3333
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:3333 || exit 1
+
+# Start the application
+WORKDIR /app/apps/frontend
+CMD ["npm", "run", "dev", "--", "-p", "3333", "-H", "0.0.0.0"]

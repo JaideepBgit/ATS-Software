@@ -1,0 +1,171 @@
+================================================================================
+                    🔥 INTERACTIVE ATS - QUICK START
+================================================================================
+
+NEW FEATURE: Chat with AI about your candidates!
+
+================================================================================
+                         WHAT IS IT?
+================================================================================
+
+The Interactive ATS extends the Advanced ATS with CONVERSATIONAL capabilities.
+
+After analyzing resumes, you can:
+✓ Ask UNLIMITED follow-up questions about each candidate
+✓ Have natural conversations with full context
+✓ Dig deeper into specific concerns
+✓ Get interview strategies
+✓ Compare candidates with AI assistance
+✓ Get risk assessments and hiring advice
+
+================================================================================
+                         HOW TO RUN
+================================================================================
+
+1. Make sure LM Studio is running with Gemma model
+2. Run: python interactive_ats.py
+   Or double-click: RUN_INTERACTIVE_ATS.bat
+
+================================================================================
+                         EXAMPLE QUESTIONS
+================================================================================
+
+About the Candidate:
+• What are the biggest concerns about this candidate?
+• Is this candidate worth interviewing?
+• How confident are you in this recommendation?
+• What's the risk level of hiring them?
+
+Technical Deep Dive:
+• How strong are their Python skills really?
+• Can they handle our tech stack?
+• What technical gaps need addressing?
+• Do they have real cloud experience?
+
+Interview Prep:
+• What should I ask in the technical interview?
+• What areas need deeper probing?
+• How can I verify their claims?
+• What's the best interview strategy?
+
+Team Fit:
+• Will they fit our team culture?
+• Can they mentor junior developers?
+• How are their communication skills?
+• Are they a team player?
+
+Comparison:
+• How do they compare to other candidates?
+• Who is the best candidate overall?
+• Which candidate is the safest hire?
+• Who would ramp up fastest?
+
+================================================================================
+                         INTERACTIVE COMMANDS
+================================================================================
+
+While chatting about a candidate:
+• Type your question naturally
+• 'next' or 'n' - Move to next candidate
+• 'summary' or 's' - Show quick summary
+• 'help' or 'h' - Show example questions
+• 'quit' or 'q' - Exit
+
+================================================================================
+                         EXAMPLE SESSION
+================================================================================
+
+💬 INTERACTIVE SESSION - John Doe
+Score: 82.5% | Recommendation: YES - Strong technical fit
+
+❓ Your question: What are the biggest concerns?
+
+🤖 AI Response:
+The main concerns are:
+1. Limited cloud infrastructure experience
+2. Missing Kubernetes (job requires it)
+3. Short 8-month tenure at previous company
+4. No GraphQL experience
+
+However, these are manageable with proper onboarding...
+
+❓ Your question: How can I verify their Python skills in the interview?
+
+🤖 AI Response:
+Here are targeted questions:
+1. "Walk me through architecting a microservices API with FastAPI..."
+2. "Tell me about optimizing a slow Python application..."
+[detailed interview strategy]
+
+❓ Your question: Should I be worried about the short tenure?
+
+🤖 AI Response:
+It's worth probing but not a dealbreaker. Ask directly:
+"I noticed you were at Company X for 8 months. Can you tell me about..."
+[detailed advice on how to handle this]
+
+❓ Your question: next
+
+➡️ Moving to next candidate...
+
+================================================================================
+                         COMPARISON MODE
+================================================================================
+
+After reviewing all candidates, you can compare them:
+
+⚖️ CANDIDATE COMPARISON MODE
+
+Candidates analyzed:
+1. John Doe - 82.5%
+2. Jane Smith - 78.3%
+3. Bob Johnson - 71.2%
+
+❓ Comparison question: Who is the best candidate overall?
+
+🤖 AI Response:
+John Doe is the strongest for immediate technical impact...
+However, Jane Smith might be safer because...
+[detailed comparison with reasoning]
+
+================================================================================
+                         WHY USE INTERACTIVE ATS?
+================================================================================
+
+VS Advanced ATS:
+✓ Get answers to YOUR specific questions
+✓ Dig deeper into concerns
+✓ Get personalized interview strategies
+✓ Compare candidates with AI help
+✓ Make more confident hiring decisions
+
+VS Manual Review:
+✓ AI has full context of resume + job description
+✓ Instant answers to any question
+✓ Consistent analysis across candidates
+✓ No detail overlooked
+
+================================================================================
+                         REQUIREMENTS
+================================================================================
+
+Same as Advanced ATS:
+• LM Studio running with Gemma model
+• Python packages: PyPDF2, openai
+• Resumes in data/resumes/
+• Job description in data/job_description.txt
+
+================================================================================
+                         GET STARTED NOW!
+================================================================================
+
+1. Start LM Studio with Gemma model
+2. Run: python interactive_ats.py
+3. Review each candidate's report
+4. Ask questions about anything
+5. Compare candidates
+6. Make hiring decision!
+
+For detailed guide, see: INTERACTIVE_GUIDE.md
+
+================================================================================

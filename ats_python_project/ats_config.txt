@@ -1,0 +1,70 @@
+# Advanced ATS Configuration File
+
+# ============================================
+# FILE PATHS
+# ============================================
+
+# Path to folder containing resume PDFs
+RESUME_FOLDER=./data/resumes
+
+# Path to job description text file
+JOB_DESCRIPTION_FILE=./data/job_description.txt
+
+# Minimum match score to consider (0-100)
+MIN_MATCH_SCORE=60
+
+# ============================================
+# LLM CONFIGURATION
+# ============================================
+
+# LLM Provider: openai, local, azure
+LLM_PROVIDER=local
+
+# --- OpenAI Configuration ---
+# Get your API key from: https://platform.openai.com/api-keys
+# Models: gpt-4o, gpt-4o-mini, gpt-4-turbo, gpt-3.5-turbo
+OPENAI_API_KEY=your-api-key-here
+OPENAI_MODEL=gpt-4o-mini
+
+# --- Local LLM Configuration (LM Studio, Ollama, etc.) ---
+# For LM Studio: Start server, use http://localhost:1234/v1
+# For Ollama: Use http://localhost:11434/v1
+LOCAL_LLM_URL=http://localhost:1234/v1
+LOCAL_LLM_MODEL=google/gemma-3n-e4b
+
+# --- Azure OpenAI Configuration ---
+AZURE_ENDPOINT=your-endpoint
+AZURE_API_KEY=your-key
+AZURE_DEPLOYMENT=your-deployment
+
+# ============================================
+# ANALYSIS SETTINGS
+# ============================================
+
+# Enable deep AI-powered analysis (requires LLM)
+ENABLE_DEEP_ANALYSIS=true
+
+# Generate interview questions for each candidate
+GENERATE_INTERVIEW_QUESTIONS=true
+
+# Analyze cultural fit and soft skills
+CHECK_CULTURAL_FIT=true
+
+# Analyze career progression patterns
+ANALYZE_CAREER_PROGRESSION=true
+
+# Detect potential red flags
+DETECT_RED_FLAGS=true
+
+# ============================================
+# OUTPUT SETTINGS
+# ============================================
+
+# Save detailed reports for each candidate
+SAVE_DETAILED_REPORTS=true
+
+# Folder to save reports
+OUTPUT_FOLDER=./data/reports
+
+# Export formats: json, txt, pdf (comma-separated)
+EXPORT_FORMAT=json,txt

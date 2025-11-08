@@ -1,0 +1,65 @@
+Head of Applied AI
+kadence · Los Angeles Metropolitan Area (On-site)
+
+Easy Apply
+
+Save
+Save Head of Applied AI at kadence
+Show more options
+Your profile matches some required qualifications
+
+
+Show match details
+
+Tailor my resume
+
+Help me update my profile
+
+Create cover letter
+
+
+BETA
+
+Is this information helpful?
+
+
+
+Get personalized tips to stand out to hirers
+Find jobs where you’re a top applicant and tailor your resume with the help of AI.
+
+Reactivate Premium: 50% Off
+Meet the hiring team
+Aimee Sharpe
+Aimee Sharpe  
+ 3rd
+Principal Recruiter | Kadence | AI + ML Talent Solutions
+Job poster
+
+Message
+About the job
+About the Company
+
+We’re partnering with a stealth AI startup at the intersection of filmmaking and advanced machine learning. Founded by a renowned, award-winning leader in the entertainment industry, the company is already deploying production-grade AI tools used in major studio films generating hundreds of millions in box office revenue.
+
+
+With significant backing from top-tier media and technology investors, the team is now preparing for its next phase of growth, including a Series A raise and the expansion of core technical teams. This is a unique opportunity to join at the ground level, shaping the future of AI-driven creativity in a deeply technical, high-impact environment.
+
+
+Responsibilities
+
+Architect, optimize, and maintain scalable training and inference pipelines.
+Own model optimization, packaging, and deployment across high-traffic production systems.
+Partner cross-functionally with research, engineering, and design to deliver ML-powered products.
+Define and enforce best practices for scalability, reproducibility, and system performance.
+Build and mentor a high-performing applied research team focused on shipping real-world ML solutions.
+
+
+Qualifications
+
+5+ years of experience in ML engineering with a strong focus on distributed training and efficient model deployment.
+Hands-on experience with cloud platforms, MLOps tooling, and deep learning libraries.
+Strong background in data pipelines, model serving, and performance tuning.
+Ability to bridge research and product—turning prototypes into scalable systems.
+Leadership experience in an ML research or applied AI organization is a plus.
+Degree in Computer Science, Machine Learning, or a related technical field.
+Experience with computer vision or generative vision architectures.

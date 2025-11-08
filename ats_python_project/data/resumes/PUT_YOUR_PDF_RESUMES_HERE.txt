@@ -1,0 +1,23 @@
+========================================
+PLACE YOUR PDF RESUMES IN THIS FOLDER
+========================================
+
+Instructions:
+1. Copy or move your PDF resume files into this folder
+2. You can add multiple resumes - the ATS will analyze all of them
+3. Make sure files are in PDF format (.pdf extension)
+4. Resume PDFs should contain readable text (not scanned images)
+
+Example:
+- john_doe_resume.pdf
+- jane_smith_resume.pdf
+- candidate_123.pdf
+
+Then run: python simple_ats.py
+(or double-click RUN_ATS.bat)
+
+The ATS will:
+✓ Analyze each resume against the job description
+✓ Show matching and missing skills
+✓ Calculate ATS match scores
+✓ Rank all candidates by score
