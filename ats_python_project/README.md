@@ -29,7 +29,9 @@ Professional-grade Applicant Tracking System (ATS) that works exactly like real 
 - ✅ **TWO MODES:**
   - **Recruiter Mode**: Evaluate candidates for hiring
   - **Candidate Mode**: Improve YOUR resume! 📝
-- ⚡ **Run**: `python interactive_ats.py`
+- ⚡ **Run**: 
+  - LM Studio: `python interactive_ats.py`
+  - Ollama: `python interactive_ats_ollama.py` (with qwen2.5:7b)
 - 📖 **Guide**: See [CANDIDATE_MODE_GUIDE.md](CANDIDATE_MODE_GUIDE.md)
 
 ---

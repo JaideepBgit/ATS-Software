@@ -1,0 +1,126 @@
+{
+  "candidate_name": "Jaideep Bommidi",
+  "filename": "Jaideep_Bommidi.pdf",
+  "overall_score": 83.35,
+  "skill_match_score": 88.0,
+  "experience_match_score": 92.0,
+  "education_match_score": 75.0,
+  "cultural_fit_score": 70.0,
+  "keyword_density_score": 78.0,
+  "matched_skills": [
+    "Python",
+    "PyTorch",
+    "TensorFlow",
+    "LLMs",
+    "RAG",
+    "SQL",
+    "Spark",
+    "Cloud Platforms (AWS/Azure)",
+    "MLOps",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "REST APIs"
+  ],
+  "missing_critical_skills": [
+    "Scalable training and inference pipelines architecture experience (explicitly stated in job description)"
+  ],
+  "missing_preferred_skills": [],
+  "additional_skills": [
+    "FastAPI",
+    "Flask",
+    "Django",
+    "React.js",
+    "AngularJS",
+    "Snowflake",
+    "Redshift",
+    "HBase",
+    "PostgreSQL",
+    "MySQL",
+    "SQL Server",
+    "MongoDB",
+    "NoSQL",
+    "CloudFormation",
+    "CI/CD",
+    "Git",
+    "Jenkins",
+    "AWS CodeBuild/CodeDeploy/CodePipeline",
+    "GoCD",
+    "Maven (gmavenplus)",
+    "Selenium",
+    "Cypress",
+    "JUnit",
+    "Mocha",
+    "Jest",
+    "Enzyme",
+    "Tableau",
+    "Power BI",
+    "Microsoft Excel",
+    "SAS Enterprise Miner"
+  ],
+  "candidate_experience": {
+    "total_years": 5.5,
+    "positions": [
+      {
+        "title": "Machine Learning Engineer (AI Systems)",
+        "company": "Webster Bank",
+        "duration": "May 2025 – Current"
+      }
+    ],
+    "companies": [
+      "Webster Bank",
+      "Temenos"
+    ],
+    "career_progression": "The candidate has progressed from a Machine Learning Engineer role to a Head of Applied AI position, indicating career growth and increasing responsibility.",
+    "relevant_experience_years": 4.0
+  },
+  "experience_gap": "While the candidate has 5.5 years of experience, the resume lacks specific details on leading or architecting AI solutions at scale within a production environment, which is a key requirement. Further probing into project leadership and architectural contributions is needed.",
+  "education": {
+    "degrees": [
+      "M.S",
+      "Advanced Data Analytics"
+    ],
+    "institutions": [
+      "University of North Texas"
+    ],
+    "fields_of_study": [
+      "Data Analytics"
+    ],
+    "graduation_years": [
+      2024
+    ]
+  },
+  "education_match": "The candidate's M.S. in Advanced Data Analytics aligns well with the technical requirements of the role. However, the specific curriculum and projects undertaken during the degree should be explored to assess depth of knowledge in ML engineering.",
+  "strengths": [
+    "Strong technical foundation in ML engineering with proficiency in multiple frameworks (PyTorch, TensorFlow).",
+    "Experience with cloud platforms and MLOps tooling.",
+    "Proven ability to deliver impactful results through practical application of ML (churn prediction, defect detection).",
+    "Deep expertise in retrieval systems, LLM fine-tuning, and ranking optimization."
+  ],
+  "weaknesses": [
+    "Limited explicit experience with architectural design and scaling production-grade AI systems.",
+    "Lack of direct experience building and mentoring an applied research team."
+  ],
+  "red_flags": [],
+  "recommendations": [
+    "Probe deeper into the candidate's experience with distributed training and model deployment at scale.",
+    "Assess their leadership potential and experience in mentoring junior engineers.",
+    "Clarify the scope of their involvement in architectural decisions for AI systems."
+  ],
+  "suggested_interview_questions": [
+    "Describe a challenging project where you had to optimize a machine learning model for production. What were the key obstacles, and how did you overcome them?",
+    "Walk me through your experience with designing and implementing scalable training and inference pipelines.",
+    "How would you approach building and leading an applied research team focused on delivering real-world ML solutions?",
+    "Describe your experience with MLOps tools and CI/CD pipelines. What are your preferred tools and why?",
+    "Tell me about a time you had to make a trade-off between model accuracy and latency. How did you decide?"
+  ],
+  "areas_to_probe": [
+    "Details of projects involving distributed training and model deployment.",
+    "Experience with architectural design for AI systems.",
+    "Leadership experience and mentoring skills.",
+    "Specific technologies and tools used in previous roles."
+  ],
+  "executive_summary": "Jaideep Bommidi possesses a strong technical foundation in ML engineering, with extensive experience in Python, PyTorch/TensorFlow, LLMs, and MLOps. His background includes delivering impactful ML solutions and working with cloud platforms. However, further assessment is needed regarding his experience with architectural design, scaling production systems, and leading research teams.",
+  "hiring_recommendation": "YES - The candidate's skills and experience align well with the requirements of the role, particularly in areas like LLMs, MLOps, and cloud technologies. Further probing during the interview is recommended to validate their leadership potential and architectural capabilities.",
+  "timestamp": "2025-11-08T22:20:48.444459"
+}

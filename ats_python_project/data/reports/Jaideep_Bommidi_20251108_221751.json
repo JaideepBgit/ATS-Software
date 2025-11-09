@@ -1,0 +1,102 @@
+{
+  "candidate_name": "Jaideep Bommidi",
+  "filename": "Jaideep_Bommidi.pdf",
+  "overall_score": 80.0,
+  "skill_match_score": 85.0,
+  "experience_match_score": 90.0,
+  "education_match_score": 70.0,
+  "cultural_fit_score": 65.0,
+  "keyword_density_score": 75.0,
+  "matched_skills": [
+    "Python",
+    "PyTorch",
+    "TensorFlow",
+    "LLMs/RAG",
+    "retrieval & ranking",
+    "AWS/Azure deployment"
+  ],
+  "missing_critical_skills": [],
+  "missing_preferred_skills": [
+    "Scikit-learn",
+    "Keras",
+    "NLP",
+    "classical ML (trees, boosting, clustering, PCA)",
+    "time series (ARIMA, Prophet, VAR)",
+    "computer vision"
+  ],
+  "additional_skills": [
+    "Agentic AI",
+    "FastAPI",
+    "Flask",
+    "Django",
+    "React.js",
+    "AngularJS",
+    "REST",
+    "SQLAlchemy",
+    "Apache Spark",
+    "Hadoop /HDFS",
+    "Hive",
+    "Pig",
+    "MapReduce",
+    "Snowflake",
+    "Redshift",
+    "HBase"
+  ],
+  "candidate_experience": {
+    "total_years": 5.5,
+    "positions": [
+      {
+        "title": "Machine Learning Engineer (AI Systems)",
+        "company": "Webster Bank",
+        "duration": "1 year"
+      }
+    ],
+    "companies": [
+      "Webster Bank"
+    ],
+    "career_progression": "The candidate has a strong background in machine learning and data science, with experience in deploying production systems across various industries. The role at Webster Bank showcases advanced expertise in LLMs, retrieval systems, and MLOps practices.",
+    "relevant_experience_years": 4.0
+  },
+  "experience_gap": "Candidate has slightly more experience than required, but no specific mention of AI-driven creativity or production-grade AI tools.",
+  "education": {
+    "degrees": [
+      "M.S, Advanced Data Analytics"
+    ],
+    "institutions": [
+      "University of North Texas"
+    ],
+    "fields_of_study": [
+      "Advanced Data Analytics"
+    ],
+    "graduation_years": [
+      2024
+    ]
+  },
+  "education_match": "Candidate is currently pursuing an M.S. in Advanced Data Analytics, which aligns well with the job requirements.",
+  "strengths": [
+    "Strong background in ML engineering and distributed training",
+    "Experience with cloud platforms and MLOps tooling",
+    "Proven track record of delivering production systems"
+  ],
+  "weaknesses": [
+    "Less emphasis on classical ML techniques compared to the job description",
+    "No specific mention of AI-driven creativity or production-grade AI tools experience"
+  ],
+  "red_flags": [],
+  "recommendations": [
+    "Request a detailed project summary from the candidate",
+    "Ask about their experience with AI-driven creativity and production-grade AI tools"
+  ],
+  "suggested_interview_questions": [
+    "Can you describe your most significant contribution to an AI-driven project?",
+    "How do you ensure scalability, reproducibility, and system performance in your ML projects?",
+    "What strategies have you used to mentor a high-performing applied research team?"
+  ],
+  "areas_to_probe": [
+    "Experience with specific tools and technologies",
+    "Project management experience in AI-driven environments"
+  ],
+  "executive_summary": "Jaideep Bommidi has strong technical skills and relevant experience, making him a suitable candidate for the Head of Applied AI role. However, there are some gaps in his classical ML knowledge that should be addressed.",
+  "hiring_recommendation": "YES - Candidate meets most requirements but lacks specific experience with classical ML techniques.",
+  "timestamp": "2025-11-08T22:17:51.506615"
+}

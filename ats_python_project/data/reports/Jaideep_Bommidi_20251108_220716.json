@@ -1,0 +1,87 @@
+{
+  "candidate_name": "Jaideep Bommidi",
+  "filename": "Jaideep_Bommidi.pdf",
+  "overall_score": 79.0,
+  "skill_match_score": 85.0,
+  "experience_match_score": 90.0,
+  "education_match_score": 70.0,
+  "cultural_fit_score": 65.0,
+  "keyword_density_score": 65.0,
+  "matched_skills": [
+    "Python",
+    "PyTorch",
+    "TensorFlow",
+    "LLMs/RAG",
+    "retrieval & ranking",
+    "AWS/Azure deployment"
+  ],
+  "missing_critical_skills": [],
+  "missing_preferred_skills": [
+    "MLOps tooling",
+    "deep learning libraries"
+  ],
+  "additional_skills": [
+    "FastAPI",
+    "Flask",
+    "Django",
+    "React.js",
+    "AngularJS"
+  ],
+  "candidate_experience": {
+    "total_years": 5.5,
+    "positions": [
+      {
+        "title": "Machine Learning Engineer (AI Systems)",
+        "company": "Webster Bank",
+        "duration": "1 year"
+      }
+    ],
+    "companies": [
+      "Webster Bank"
+    ],
+    "career_progression": "The candidate has a strong background in machine learning and data science, with experience in production systems across various industries. The role at Webster Bank showcases advanced work on LLM agents and retrieval systems.",
+    "relevant_experience_years": 4.0
+  },
+  "experience_gap": "Candidate has relevant experience but lacks specific MLOps and deep learning tooling expertise.",
+  "education": {
+    "degrees": [
+      "M.S, Advanced Data Analytics"
+    ],
+    "institutions": [
+      "University of North Texas"
+    ],
+    "fields_of_study": [
+      "Advanced Data Analytics"
+    ],
+    "graduation_years": [
+      2024
+    ]
+  },
+  "education_match": "Candidate's education aligns with the job requirements, though it is not yet completed.",
+  "strengths": [
+    "Strong in ML engineering and deployment",
+    "Experienced in production systems",
+    "Versatile skill set across multiple domains"
+  ],
+  "weaknesses": [
+    "Lack of specific MLOps tooling experience",
+    "Limited exposure to certain cloud platforms"
+  ],
+  "red_flags": [],
+  "recommendations": [
+    "Enhance knowledge on MLOps tooling and deep learning libraries",
+    "Highlight contributions in production ML systems"
+  ],
+  "suggested_interview_questions": [
+    "Can you walk us through a project where you deployed an AI model in a high-traffic production system?",
+    "How do you ensure reproducibility and scalability of your machine learning models?",
+    "Describe a situation where you had to optimize the performance of a machine learning model."
+  ],
+  "areas_to_probe": [
+    "Candidate's experience with distributed training and efficient deployment",
+    "Depth of knowledge in cloud platforms and MLOps tooling"
+  ],
+  "executive_summary": "Jaideep Bommidi is well-qualified for the Head of Applied AI role, with extensive ML engineering experience and a strong skill set. However, he lacks specific MLOps expertise and deeper exposure to certain cloud platforms.",
+  "hiring_recommendation": "YES - Candidate has the necessary skills and experience but may require additional training in MLOps tooling.",
+  "timestamp": "2025-11-08T22:07:16.747833"
+}

@@ -1,0 +1,72 @@
+# ============================================================================
+# ATS Configuration - OLLAMA VERSION
+# ============================================================================
+# This config is for using Ollama with qwen2.5:7b model
+# Make sure Ollama is running: http://localhost:11434
+# ============================================================================
+
+# LLM Provider Configuration
+# ============================================================================
+# Use 'local' for Ollama (Ollama is OpenAI-compatible)
+LLM_PROVIDER=local
+
+# Ollama Configuration
+# ============================================================================
+# Base URL for Ollama API (default: http://localhost:11434/v1)
+# Note: Ollama uses /v1 endpoint for OpenAI compatibility
+LOCAL_LLM_URL=http://localhost:11434/v1
+
+# Model name (your model: qwen2.5:7b)
+LOCAL_LLM_MODEL=qwen2.5:7b
+
+# Context Window Configuration
+# ============================================================================
+# The script automatically uses 8192 tokens context window (num_ctx=8192)
+# This provides ~6,000-6,400 words or ~32,000 characters of context
+# Perfect for analyzing full resumes + job descriptions
+# VRAM usage: ~6-7 GB (safe for RTX 4060 8GB)
+
+# File Paths
+# ============================================================================
+# Folder containing PDF resumes to analyze
+RESUME_FOLDER=./data/resumes
+
+# Job description text file
+JOB_DESCRIPTION_FILE=./data/job_description.txt
+
+# Output folder for reports
+OUTPUT_FOLDER=./data/reports
+
+# Analysis Settings
+# ============================================================================
+# Minimum score to pass (0-100)
+MIN_MATCH_SCORE=60
+
+# Save detailed JSON reports for each candidate
+SAVE_DETAILED_REPORTS=true
+
+# Advanced Features
+# ============================================================================
+# Enable deep AI analysis (recommended)
+ENABLE_DEEP_ANALYSIS=true
+
+# Generate interview questions
+GENERATE_INTERVIEW_QUESTIONS=true
+
+# Analyze cultural fit
+ANALYZE_CULTURAL_FIT=true
+
+# Detect red flags
+DETECT_RED_FLAGS=true
+
+# Analyze career progression
+ANALYZE_CAREER_PROGRESSION=true
+
+# ============================================================================
+# OLLAMA SETUP INSTRUCTIONS
+# ============================================================================
+# 1. Install Ollama from: https://ollama.ai
+# 2. Pull your model: ollama pull qwen2.5:7b
+# 3. Verify it's running: curl http://localhost:11434
+# 4. Run the ATS: python interactive_ats_ollama.py
+# ============================================================================
