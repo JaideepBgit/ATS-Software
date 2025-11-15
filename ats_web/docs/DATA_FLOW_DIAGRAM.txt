@@ -1,0 +1,313 @@
+================================================================================
+                    DATA FLOW DIAGRAM - CANDIDATE ANALYSIS
+================================================================================
+
+STEP 1: USER SAVES JOB DESCRIPTION
+===================================
+
+Frontend (JobDescription.js)
+    │
+    │ POST /api/job-description
+    │ {
+    │   job_description: "Data Scientist at Manhattan...",
+    │   company_name: "Manhattan Associates",
+    │   role_name: "Data Scientist"
+    │ }
+    ↓
+Backend (main.py)
+    │
+    │ [DEBUG] ===== JOB DESCRIPTION SAVED =====
+    │ [DEBUG] Company: 'Manhattan Associates'
+    │ [DEBUG] Role: 'Data Scientist'
+    │
+    ↓
+Global Variables Stored:
+    job_description = "Data Scientist at Manhattan..."
+    company_name = "Manhattan Associates"
+    role_name = "Data Scientist"
+
+
+STEP 2: USER UPLOADS RESUME
+============================
+
+Frontend (UploadResume.js)
+    │
+    │ POST /api/upload-resume
+    │ FormData: resume.pdf
+    ↓
+Backend (main.py)
+    │
+    │ [DEBUG] ===== ANALYZING RESUME =====
+    │ [DEBUG] Company: 'Manhattan Associates'
+    │ [DEBUG] Role: 'Data Scientist'
+    │
+    ↓
+Extract PDF Text
+    │
+    ↓
+Call ats_service.analyze_resume(
+    resume_text,
+    job_description,      ← From global variable
+    filename,
+    company_name,         ← From global variable
+    role_name            ← From global variable
+)
+
+
+STEP 3: ANALYSIS PROCESS
+=========================
+
+ATS Service (ats_service.py)
+    │
+    │ [ATS] analyze_resume called with:
+    │       company='Manhattan Associates'
+    │       role='Data Scientist'
+    │
+    ↓
+Extract Candidate Name
+    │
+    ↓
+Generate Thinking Process
+    │
+    │ Prompt includes:
+    │ "Analyze this candidate for the Data Scientist role
+    │  at Manhattan Associates"
+    │
+    │ COMPANY: Manhattan Associates
+    │ ROLE: Data Scientist
+    │ JOB DESCRIPTION: ...
+    │ RESUME: ...
+    │
+    ↓
+LLM Generates Thinking Steps
+    │
+    ↓
+Main Analysis
+    │
+    │ Prompt includes:
+    │ "Analyze this candidate for the Data Scientist role
+    │  at Manhattan Associates with CRITICAL attention..."
+    │
+    │ COMPANY: Manhattan Associates        ← EXPLICIT!
+    │ ROLE: Data Scientist                 ← EXPLICIT!
+    │ JOB DESCRIPTION: ...
+    │ RESUME: ...
+    │
+    ↓
+LLM Analyzes Resume
+    │
+    │ Returns JSON:
+    │ {
+    │   skill_match_score: 82.0,
+    │   matched_skills: [...],
+    │   missing_critical_skills: [...],
+    │   strengths: [...],
+    │   weaknesses: [...],
+    │   executive_summary: "...",
+    │   hiring_recommendation: "YES - Strong candidate"
+    │ }
+    │
+    ↓
+Create ATSResult Object
+    │
+    │ ATSResult(
+    │   candidate_name="Jaideep Bommidi",
+    │   filename="resume.pdf",
+    │   overall_score=82.0,
+    │   company_name="Manhattan Associates",    ← STORED!
+    │   role_name="Data Scientist",             ← STORED!
+    │   thinking_process=[...],
+    │   ...
+    │ )
+    │
+    ↓
+Return to Backend
+
+
+STEP 4: STORE RESULT
+====================
+
+Backend (main.py)
+    │
+    │ [DEBUG] ===== RESULT CREATED =====
+    │ [DEBUG] Candidate ID: Jaideep Bommidi_2025-11-11T10:30:00
+    │ [DEBUG] Company in result: 'Manhattan Associates'
+    │ [DEBUG] Role in result: 'Data Scientist'
+    │ [DEBUG] Overall Score: 82.0%
+    │
+    ↓
+Store in Memory:
+    analysis_results[candidate_id] = {
+        candidate_name: "Jaideep Bommidi",
+        filename: "resume.pdf",
+        overall_score: 82.0,
+        company_name: "Manhattan Associates",    ← STORED!
+        role_name: "Data Scientist",             ← STORED!
+        matched_skills: [...],
+        missing_critical_skills: [...],
+        strengths: [...],
+        weaknesses: [...],
+        thinking_process: [...],
+        ...
+    }
+    │
+    ↓
+Return to Frontend:
+    {
+        candidate_id: "Jaideep Bommidi_2025-11-11T10:30:00",
+        result: { ... }
+    }
+
+
+STEP 5: DISPLAY RESULTS LIST
+=============================
+
+Frontend (ResultsList.js)
+    │
+    │ GET /api/results
+    ↓
+Backend Returns:
+    {
+        results: [
+            {
+                candidate_name: "Jaideep Bommidi",
+                company_name: "Manhattan Associates",
+                role_name: "Data Scientist",
+                overall_score: 82.0,
+                ...
+            }
+        ]
+    }
+    │
+    ↓
+Display in Table:
+    ┌──────────────────┬──────────────────────────────┬──────────┐
+    │ Candidate        │ Company - Role               │ Score    │
+    ├──────────────────┼──────────────────────────────┼──────────┤
+    │ Jaideep Bommidi  │ Manhattan Associates -       │ 82.0%    │
+    │ resume.pdf       │ Data Scientist               │          │
+    └──────────────────┴──────────────────────────────┴──────────┘
+                              ↑
+                              │
+                    DISPLAYED FROM RESULT DATA!
+
+
+STEP 6: DISPLAY CANDIDATE DETAIL
+=================================
+
+User Clicks "View"
+    │
+    ↓
+Frontend (CandidateDetail.js)
+    │
+    │ Receives candidate object with:
+    │ {
+    │   candidate_name: "Jaideep Bommidi",
+    │   filename: "resume.pdf",
+    │   company_name: "Manhattan Associates",
+    │   role_name: "Data Scientist",
+    │   overall_score: 82.0,
+    │   thinking_process: [...],
+    │   matched_skills: [...],
+    │   missing_critical_skills: [...],
+    │   strengths: [...],
+    │   weaknesses: [...],
+    │   ...
+    │ }
+    │
+    ↓
+Display:
+    ┌─────────────────────────────────────────────────────────┐
+    │ Jaideep Bommidi                                         │
+    │ resume.pdf                                              │
+    │ Manhattan Associates - Data Scientist    ← DISPLAYED!  │
+    │                                                         │
+    │ [Overall Score: 82.0%] [YES - Strong candidate]        │
+    │                                                         │
+    │ AI Thinking Process                                     │
+    │ ├─ Step 1: Understanding Requirements                   │
+    │ │  "For the Data Scientist role at Manhattan..."       │
+    │ ├─ Step 2: Technical Skills Assessment                  │
+    │ │  "Looking at Python, ML, data analysis skills..."    │
+    │ └─ ...                                                  │
+    │                                                         │
+    │ Missing Skills:                                         │
+    │ • Supply chain domain knowledge                         │
+    │ • Microservices architecture                            │
+    │                                                         │
+    │ Weaknesses:                                             │
+    │ • Limited supply chain management experience            │
+    │ • Could benefit from more cloud deployment              │
+    └─────────────────────────────────────────────────────────┘
+
+
+================================================================================
+                            KEY IMPROVEMENTS
+================================================================================
+
+BEFORE THE FIX:
+---------------
+❌ Company/role not displayed in UI
+❌ LLM prompts lacked explicit job context
+❌ Analysis could reference wrong jobs
+❌ Hard to debug data flow
+
+AFTER THE FIX:
+--------------
+✅ Company/role displayed prominently
+✅ Explicit COMPANY and ROLE in LLM prompts
+✅ Analysis always references correct job
+✅ Enhanced logging throughout pipeline
+
+================================================================================
+                        CRITICAL POINTS IN FLOW
+================================================================================
+
+1. SAVE JOB DESCRIPTION
+   → Stores company_name and role_name in global variables
+   → These persist until server restart or new job saved
+
+2. ANALYZE RESUME
+   → Uses current global variables (company_name, role_name)
+   → Passes them to ATS service
+
+3. LLM PROMPTS
+   → Include explicit "COMPANY: X" and "ROLE: Y" fields
+   → Ensures LLM knows the exact job context
+   → Prevents using cached/wrong context
+
+4. STORE RESULT
+   → Result object includes company_name and role_name
+   → Stored with all other analysis data
+
+5. DISPLAY
+   → Frontend shows company_name and role_name from result
+   → User can immediately see which job the analysis is for
+
+================================================================================
+                            DATA PERSISTENCE
+================================================================================
+
+IN-MEMORY STORAGE (Current):
+----------------------------
+Global Variables:
+    job_description    → Current job description text
+    company_name       → Current company name
+    role_name         → Current role name
+
+Dictionary:
+    analysis_results = {
+        "candidate_id_1": { result_data_1 },
+        "candidate_id_2": { result_data_2 },
+        ...
+    }
+
+NOTES:
+- Data persists during server runtime
+- Lost on server restart
+- Multiple analyses can coexist
+- Each result has its own company/role
+
+FUTURE: Database storage for persistence
+
+================================================================================

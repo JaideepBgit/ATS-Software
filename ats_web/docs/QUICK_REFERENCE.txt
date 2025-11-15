@@ -1,0 +1,79 @@
+================================================================================
+                        QUICK REFERENCE CARD
+================================================================================
+
+PROBLEM FIXED:
+--------------
+✅ Candidate details showing wrong company/role
+✅ "name 'company_name' is not defined" error
+
+WHAT TO DO NOW:
+---------------
+1. RESTART BACKEND (Required!)
+   → Stop backend (Ctrl+C)
+   → cd ats_web/backend
+   → python main.py
+   
+   OR double-click: RESTART_BACKEND.bat
+
+2. CLEAR OLD RESULTS (Recommended)
+   → python backend/clear_results.py
+   OR double-click: CLEAR_RESULTS.bat
+
+3. TEST IT
+   → Save job description with company/role
+   → Upload resume
+   → Check results show correct company/role
+
+WHAT YOU'LL SEE:
+----------------
+✅ Company and role displayed at top of candidate detail
+✅ Results list shows "Company - Role" column
+✅ Analysis references correct job title
+✅ Missing skills match job requirements
+✅ No more "name not defined" errors
+
+BACKEND LOGS (Should see):
+--------------------------
+[DEBUG] ===== JOB DESCRIPTION SAVED =====
+[DEBUG] Company: 'Manhattan Associates'
+[DEBUG] Role: 'Data Scientist'
+
+[DEBUG] ===== ANALYZING RESUME =====
+[DEBUG] Company: 'Manhattan Associates'
+[DEBUG] Role: 'Data Scientist'
+
+TROUBLESHOOTING:
+----------------
+❌ "name 'company_name' is not defined"
+   → RESTART BACKEND!
+
+❌ Still seeing old company/role
+   → Clear results + restart backend + clear browser cache
+
+❌ Company/role empty
+   → Save job description BEFORE uploading resume
+
+DOCUMENTATION:
+--------------
+→ COMPLETE_FIX_SUMMARY.md - Overview of all fixes
+→ HOTFIX_GLOBAL_VARIABLES.md - Details about the error fix
+→ QUICK_FIX_STEPS.md - 5-minute testing guide
+→ TESTING_CHECKLIST.md - Detailed testing steps
+
+QUICK COMMANDS:
+---------------
+# Restart backend
+cd ats_web/backend && python main.py
+
+# Clear results
+python ats_web/backend/clear_results.py
+
+# Test backend
+python ats_web/backend/test_job_flow.py
+
+# Check status
+curl http://localhost:8000/api/debug/storage
+
+STATUS: ✅ READY TO USE
+================================================================================

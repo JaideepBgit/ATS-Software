@@ -1,0 +1,106 @@
+================================================================================
+QUICK FIX GUIDE: Company Name & Role Name Not Showing
+================================================================================
+
+PROBLEM: Company name and role name not appearing in results table
+
+SOLUTION: Follow these steps in order
+
+--------------------------------------------------------------------------------
+STEP 1: RESTART BACKEND (REQUIRED)
+--------------------------------------------------------------------------------
+The code changes require a backend restart.
+
+Windows:
+  1. Press Ctrl+C in the backend terminal
+  2. Run: python main.py
+
+Linux/Mac:
+  1. Press Ctrl+C in the backend terminal
+  2. Run: python main.py
+
+--------------------------------------------------------------------------------
+STEP 2: CLEAR OLD RESULTS (REQUIRED)
+--------------------------------------------------------------------------------
+Old results don't have company/role fields. You must clear them.
+
+Method A - Restart backend (already done in Step 1, clears automatically)
+Method B - Use API: curl -X DELETE http://localhost:8000/api/results
+
+--------------------------------------------------------------------------------
+STEP 3: SAVE JOB DESCRIPTION WITH COMPANY & ROLE
+--------------------------------------------------------------------------------
+1. Go to "Setup & Upload" tab
+2. Fill in "Company Name" field (e.g., "Google")
+3. Fill in "Role Name" field (e.g., "Machine Learning Engineer")
+4. Paste or type job description
+5. Click "Save Job Description"
+
+VERIFY: Check backend console, you should see:
+  [DEBUG] Job description saved:
+    Company: 'Google'
+    Role: 'Machine Learning Engineer'
+
+--------------------------------------------------------------------------------
+STEP 4: UPLOAD NEW RESUME
+--------------------------------------------------------------------------------
+1. Upload a PDF resume
+2. Wait for analysis to complete
+
+VERIFY: Check backend console, you should see:
+  [DEBUG] Analyzing resume with:
+    Company: 'Google'
+    Role: 'Machine Learning Engineer'
+  [DEBUG] Result stored:
+    Company in result: 'Google'
+    Role in result: 'Machine Learning Engineer'
+
+--------------------------------------------------------------------------------
+STEP 5: CHECK RESULTS TABLE
+--------------------------------------------------------------------------------
+1. Go to "Results" tab
+2. Look at "Company - Role" column
+3. Should show: "Google - Machine Learning Engineer"
+
+================================================================================
+STILL NOT WORKING?
+================================================================================
+
+Run the test script:
+  cd ats_web
+  python test_company_role.py
+
+Check debug endpoint:
+  Open browser: http://localhost:8000/api/debug/storage
+
+Check backend console for [DEBUG] messages
+
+================================================================================
+WHERE DATA IS STORED
+================================================================================
+
+Backend Memory (main.py):
+  - company_name: str = ""  (line 25)
+  - role_name: str = ""     (line 26)
+  - analysis_results: Dict  (line 22) - contains all candidate results
+
+Each Result Contains:
+  {
+    "candidate_name": "John Doe",
+    "company_name": "Google",
+    "role_name": "Machine Learning Engineer",
+    "overall_score": 85.5,
+    ...
+  }
+
+================================================================================
+CHANGES MADE
+================================================================================
+
+✓ Removed "Rank" column from results table
+✓ Added debug logging to backend
+✓ Added /api/debug/storage endpoint
+✓ Company and role are now stored with each result
+✓ Auto-extraction from job description (if fields left empty)
+
+================================================================================

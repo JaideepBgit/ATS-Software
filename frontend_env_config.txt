@@ -1,8 +1,0 @@
-# Frontend Configuration for Resume-Matcher
-# Copy this content to: Resume-Matcher/.env.local
-
-# Backend API URL
-NEXT_PUBLIC_API_URL=http://localhost:8888
-
-# Frontend Port (configured in package.json)
-PORT=3333

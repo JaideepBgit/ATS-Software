@@ -1,0 +1,188 @@
+================================================================================
+                    INTERACTIVE ATS - PROJECT STRUCTURE
+================================================================================
+
+ESSENTIAL FILES ONLY - Clean and Simple
+
+================================================================================
+                    📁 PROJECT STRUCTURE
+================================================================================
+
+ats_python_project/
+│
+├── 📄 Core Python Files
+│   ├── advanced_ats.py              # Base ATS engine (shared by both versions)
+│   ├── interactive_ats.py           # LM Studio version
+│   └── interactive_ats_ollama.py    # Ollama version (8192 context)
+│
+├── ⚙️ Configuration Files
+│   ├── ats_config.txt               # LM Studio config
+│   └── ats_config_ollama.txt        # Ollama config (8192 context)
+│
+├── 🧪 Test Files
+│   ├── test_lm_studio.py            # Test LM Studio connection
+│   └── test_ollama.py               # Test Ollama connection
+│
+├── 🚀 Batch Files (Windows)
+│   ├── RUN_INTERACTIVE_ATS.bat      # Run LM Studio version
+│   ├── RUN_INTERACTIVE_ATS_OLLAMA.bat  # Run Ollama version
+│   └── TEST_OLLAMA.bat              # Test Ollama
+│
+├── 📦 Dependencies
+│   └── requirements_advanced.txt    # Python packages
+│
+├── 📚 Documentation
+│   ├── README.md                    # Quick start guide
+│   └── PROJECT_STRUCTURE.txt        # This file
+│
+└── 📂 data/
+    ├── resumes/                     # Put PDF resumes here
+    ├── reports/                     # Generated reports (auto-created)
+    └── job_description.txt          # Edit with job description
+
+================================================================================
+                    🚀 QUICK START
+================================================================================
+
+1. Install dependencies:
+   pip install -r requirements_advanced.txt
+
+2. Test connection:
+   python test_ollama.py
+
+3. Run interactive ATS:
+   python interactive_ats_ollama.py
+
+4. Choose mode:
+   1 = Recruiter (evaluate candidates)
+   2 = Candidate (improve your resume)
+
+================================================================================
+                    📝 FILE DESCRIPTIONS
+================================================================================
+
+advanced_ats.py
+→ Core ATS engine with AI analysis
+→ Shared by both interactive versions
+→ Handles PDF extraction, scoring, analysis
+
+interactive_ats.py
+→ LM Studio version
+→ Uses ats_config.txt
+→ Endpoint: http://localhost:1234/v1
+
+interactive_ats_ollama.py
+→ Ollama version (RECOMMENDED)
+→ Uses ats_config_ollama.txt
+→ Endpoint: http://localhost:11434/v1
+→ Context: 8192 tokens (automatic)
+→ VRAM: ~6-7 GB
+
+ats_config.txt
+→ Configuration for LM Studio
+→ Set model, endpoint, paths
+
+ats_config_ollama.txt
+→ Configuration for Ollama
+→ Model: qwen2.5:7b
+→ Context: 8192 tokens (automatic)
+
+test_ollama.py
+→ Tests Ollama connection
+→ Verifies model availability
+→ Sends test request
+
+test_lm_studio.py
+→ Tests LM Studio connection
+→ Verifies server is running
+
+requirements_advanced.txt
+→ Python dependencies
+→ PyPDF2, openai
+
+data/resumes/
+→ Put PDF resumes here
+→ One or more files
+
+data/job_description.txt
+→ Edit with target job description
+→ Plain text format
+
+data/reports/
+→ Auto-generated JSON reports
+→ Created automatically
+
+================================================================================
+                    🎯 TWO MODES
+================================================================================
+
+MODE 1: RECRUITER
+→ Evaluate candidates for hiring
+→ Get interview strategies
+→ Compare multiple candidates
+→ Make hiring decisions
+
+MODE 2: CANDIDATE
+→ Improve YOUR resume
+→ Get before/after examples
+→ Understand your score
+→ Boost match percentage
+
+================================================================================
+                    💡 USAGE EXAMPLES
+================================================================================
+
+# Test Ollama
+python test_ollama.py
+
+# Run Ollama version (recommended)
+python interactive_ats_ollama.py
+
+# Run LM Studio version
+python interactive_ats.py
+
+# Or use batch files
+RUN_INTERACTIVE_ATS_OLLAMA.bat
+RUN_INTERACTIVE_ATS.bat
+
+================================================================================
+                    🔧 CONFIGURATION
+================================================================================
+
+Ollama (qwen2.5:7b):
+- Endpoint: http://localhost:11434/v1
+- Context: 8192 tokens (automatic)
+- VRAM: ~6-7 GB
+- Model: qwen2.5:7b
+
+LM Studio:
+- Endpoint: http://localhost:1234/v1
+- Context: Default (model dependent)
+- Model: Configure in LM Studio
+
+================================================================================
+                    📊 FEATURES
+================================================================================
+
+✅ AI-powered resume analysis
+✅ Interactive Q&A about candidates
+✅ Two modes: Recruiter & Candidate
+✅ Before/after resume examples
+✅ Candidate comparison
+✅ Detailed scoring breakdown
+✅ Interview question generation
+✅ Red flag detection
+✅ Skills gap analysis
+✅ JSON report export
+
+================================================================================
+                    🎉 READY TO USE!
+================================================================================
+
+Clean, simple structure with only essential files.
+No clutter, no unnecessary documentation.
+Just the working code you need.
+
+Start building your complex model step by step! 🚀
+
+================================================================================

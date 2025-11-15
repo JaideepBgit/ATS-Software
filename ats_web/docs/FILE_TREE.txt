@@ -1,0 +1,172 @@
+ATS WEB APPLICATION - COMPLETE FILE STRUCTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+ats_web/
+│
+├── 📄 READ_ME_FIRST.txt          ← START HERE! Quick orientation
+├── 📄 INDEX.md                   ← Documentation index
+├── 📄 START_HERE.md              ← Complete setup guide ⭐
+├── 📄 QUICKSTART.md              ← 5-minute setup
+├── 📄 CHECKLIST.md               ← Setup verification
+├── 📄 SUMMARY.md                 ← Package overview
+├── 📄 FEATURES.md                ← Feature walkthrough
+├── 📄 SETUP_GUIDE.md             ← Detailed setup
+├── 📄 DEPENDENCY_NOTES.md        ← About warnings
+├── 📄 README.md                  ← Technical docs
+├── 📄 PROJECT_OVERVIEW.txt       ← Visual structure
+├── 📄 FILE_TREE.txt              ← This file
+│
+├── 🔧 install_backend.bat        ← Install Python packages
+├── 🔧 install_frontend.bat       ← Install Node packages
+├── 🚀 start_backend.bat          ← Start API server
+├── 🚀 start_frontend.bat         ← Start React app
+│
+├── 📁 backend/                   ← FastAPI Backend
+│   ├── main.py                   ← API server (8 endpoints)
+│   ├── ats_service.py            ← Core ATS logic
+│   ├── test_setup.py             ← Setup verification
+│   ├── requirements.txt          ← Python dependencies
+│   └── .env.example              ← Config template
+│
+└── 📁 frontend/                  ← React Frontend
+    ├── package.json              ← Node dependencies
+    │
+    ├── 📁 public/
+    │   └── index.html            ← HTML template
+    │
+    └── 📁 src/
+        ├── index.js              ← Entry point
+        ├── App.js                ← Main application
+        │
+        └── 📁 components/        ← React Components
+            ├── JobDescription.js      ← Job desc editor
+            ├── UploadResume.js        ← Resume upload
+            ├── ResultsList.js         ← Results table
+            ├── CandidateDetail.js     ← Candidate view
+            └── ChatInterface.js       ← AI chat
+
+
+═══════════════════════════════════════════════════════════════════════════════
+FILE COUNT SUMMARY
+═══════════════════════════════════════════════════════════════════════════════
+
+Documentation:     12 files
+Utilities:          4 files
+Backend:            5 files
+Frontend:           8 files
+───────────────────────────
+Total:             29 files
+
+
+═══════════════════════════════════════════════════════════════════════════════
+QUICK FILE REFERENCE
+═══════════════════════════════════════════════════════════════════════════════
+
+Need to...                          Open this file
+────────────────────────────────────────────────────────────────────────────
+Get started                         START_HERE.md
+Quick setup                         QUICKSTART.md
+Verify setup                        CHECKLIST.md
+Understand system                   SUMMARY.md
+Learn features                      FEATURES.md
+Fix problems                        SETUP_GUIDE.md
+Understand warnings                 DEPENDENCY_NOTES.md
+Technical info                      README.md
+Find documentation                  INDEX.md
+See structure                       PROJECT_OVERVIEW.txt
+See file tree                       FILE_TREE.txt (this file)
+
+Install backend                     install_backend.bat
+Install frontend                    install_frontend.bat
+Start backend                       start_backend.bat
+Start frontend                      start_frontend.bat
+
+Test backend                        backend/test_setup.py
+Configure backend                   backend/.env.example
+API server                          backend/main.py
+ATS logic                           backend/ats_service.py
+
+Main app                            frontend/src/App.js
+Job description                     frontend/src/components/JobDescription.js
+Upload interface                    frontend/src/components/UploadResume.js
+Results table                       frontend/src/components/ResultsList.js
+Candidate detail                    frontend/src/components/CandidateDetail.js
+Chat interface                      frontend/src/components/ChatInterface.js
+
+
+═══════════════════════════════════════════════════════════════════════════════
+EXECUTION ORDER
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Read:        READ_ME_FIRST.txt
+2. Read:        START_HERE.md
+3. Run:         install_backend.bat
+4. Run:         install_frontend.bat
+5. Test:        cd backend && python test_setup.py
+6. Run:         start_backend.bat (Terminal 1)
+7. Run:         start_frontend.bat (Terminal 2)
+8. Browse:      http://localhost:3000
+
+
+═══════════════════════════════════════════════════════════════════════════════
+PORTS USED
+═══════════════════════════════════════════════════════════════════════════════
+
+8000    Backend API (FastAPI)
+3000    Frontend App (React)
+11434   Ollama LLM (if using Ollama)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+KEY DIRECTORIES
+═══════════════════════════════════════════════════════════════════════════════
+
+backend/            Python FastAPI server
+frontend/src/       React source code
+frontend/public/    Static assets
+node_modules/       Node packages (created after npm install)
+__pycache__/        Python cache (created automatically)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+IMPORTANT FILES
+═══════════════════════════════════════════════════════════════════════════════
+
+⭐ START_HERE.md              Most important - read first!
+⭐ backend/main.py            API server - core backend
+⭐ frontend/src/App.js        Main app - core frontend
+⭐ backend/ats_service.py     ATS logic - analysis engine
+
+
+═══════════════════════════════════════════════════════════════════════════════
+GENERATED FILES (Don't Edit)
+═══════════════════════════════════════════════════════════════════════════════
+
+node_modules/       Node.js packages
+__pycache__/        Python bytecode
+*.pyc               Python compiled files
+build/              Production build (after npm run build)
+.DS_Store           macOS metadata
+Thumbs.db           Windows metadata
+
+
+═══════════════════════════════════════════════════════════════════════════════
+CUSTOMIZABLE FILES
+═══════════════════════════════════════════════════════════════════════════════
+
+backend/.env                    Configuration
+backend/ats_service.py          Scoring logic
+frontend/src/App.js             UI layout
+frontend/src/components/*.js    Individual features
+
+
+═══════════════════════════════════════════════════════════════════════════════
+NEXT STEPS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Open START_HERE.md
+2. Follow the setup guide
+3. Start using the app!
+
+
+═══════════════════════════════════════════════════════════════════════════════

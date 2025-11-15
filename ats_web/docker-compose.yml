@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  ats-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ats-application
+    ports:
+      - "80:80"           # Frontend
+      - "8000:8000"       # Backend API
+    volumes:
+      - ./data:/app/backend/data  # Persist job tracking data
+    environment:
+      - LLM_URL=http://host.docker.internal:11434/v1  # Use host Ollama
+      - MODEL_NAME=qwen2.5:7b  # Change this to your preferred model
+      - PYTHONUNBUFFERED=1
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # Allow container to reach host
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s

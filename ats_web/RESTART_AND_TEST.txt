@@ -1,0 +1,43 @@
+================================================================================
+                    ✅ FIX APPLIED - RESTART REQUIRED
+================================================================================
+
+ERROR FIXED:
+------------
+✗ Error processing resume: name 'company_name' is not defined
+
+WHAT WAS FIXED:
+---------------
+Added company_name parameter to _generate_thinking_process() function
+in ats_web/backend/ats_service.py
+
+WHAT YOU NEED TO DO:
+--------------------
+
+1. RESTART BACKEND (REQUIRED!)
+   
+   Stop the backend (Ctrl+C in terminal)
+   
+   Then run:
+   cd ats_web/backend
+   python main.py
+   
+   OR double-click: RESTART_BACKEND.bat
+
+2. TEST IT
+   
+   - Save job description with company and role
+   - Upload your resume
+   - Should work without errors!
+
+EXPECTED LOGS:
+--------------
+[DEBUG] ===== ANALYZING RESUME =====
+[DEBUG] Company: 'Manhattan Associates'
+[DEBUG] Role: 'Data Scientist'
+[ATS] analyze_resume called with company='Manhattan Associates', role='Data Scientist'
+[DEBUG] ===== RESULT CREATED =====
+
+STATUS: ✅ READY TO USE (after restart)
+
+================================================================================

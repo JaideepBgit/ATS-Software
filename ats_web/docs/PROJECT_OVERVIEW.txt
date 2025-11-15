@@ -1,0 +1,275 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    ATS WEB APPLICATION - PROJECT OVERVIEW                    ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+📁 PROJECT STRUCTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+ats_web/
+│
+├── 📄 START_HERE.md              ← Read this first!
+├── 📄 QUICKSTART.md              ← 5-minute setup guide
+├── 📄 SETUP_GUIDE.md             ← Detailed setup instructions
+├── 📄 DEPENDENCY_NOTES.md        ← About dependency warnings
+├── 📄 README.md                  ← Technical documentation
+│
+├── 🔧 install_backend.bat        ← Install backend dependencies
+├── 🔧 install_frontend.bat       ← Install frontend dependencies
+├── 🚀 start_backend.bat          ← Start backend server
+├── 🚀 start_frontend.bat         ← Start frontend app
+│
+├── backend/                      ← FastAPI Backend
+│   ├── main.py                   ← API server (port 8000)
+│   ├── ats_service.py            ← Core ATS logic
+│   ├── test_setup.py             ← Test installation
+│   ├── requirements.txt          ← Python dependencies
+│   └── .env.example              ← Configuration template
+│
+└── frontend/                     ← React Frontend
+    ├── package.json              ← Node dependencies
+    ├── public/
+    │   └── index.html            ← HTML template
+    └── src/
+        ├── index.js              ← Entry point
+        ├── App.js                ← Main application
+        └── components/           ← React components
+            ├── JobDescription.js      ← Job description editor
+            ├── UploadResume.js        ← Resume upload interface
+            ├── ResultsList.js         ← Candidate results table
+            ├── CandidateDetail.js     ← Detailed candidate view
+            └── ChatInterface.js       ← AI chat interface
+
+
+🏗️ ARCHITECTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐
+│                 │         │                 │         │                 │
+│  React Frontend │◄───────►│  FastAPI Server │◄───────►│  Ollama / LLM   │
+│  (Port 3000)    │  REST   │  (Port 8000)    │   API   │  (Port 11434)   │
+│                 │   API   │                 │         │                 │
+└─────────────────┘         └─────────────────┘         └─────────────────┘
+        │                           │
+        │                           │
+        ▼                           ▼
+   Material UI              PyPDF2 + OpenAI
+   Components               PDF Processing
+
+
+🔄 DATA FLOW
+═══════════════════════════════════════════════════════════════════════════════
+
+1. USER UPLOADS RESUME (PDF)
+   │
+   ├─► Frontend sends PDF to /api/upload-resume
+   │
+   ├─► Backend extracts text with PyPDF2
+   │
+   ├─► Backend sends to LLM for analysis
+   │
+   ├─► LLM returns structured analysis
+   │
+   ├─► Backend calculates scores
+   │
+   └─► Frontend displays results
+
+2. USER ASKS QUESTION
+   │
+   ├─► Frontend sends question to /api/ask
+   │
+   ├─► Backend builds context (resume + job desc)
+   │
+   ├─► Backend queries LLM
+   │
+   └─► Frontend displays AI response
+
+
+🎯 KEY FEATURES
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Job Description Management
+   - Save and edit job requirements
+   - Persistent storage across sessions
+
+✅ Resume Upload & Analysis
+   - Single or batch PDF upload
+   - Real-time progress indicators
+   - Automatic text extraction
+
+✅ AI-Powered Scoring
+   - Skills match analysis
+   - Experience evaluation
+   - Education assessment
+   - Overall compatibility score
+
+✅ Visual Results Dashboard
+   - Ranked candidate list
+   - Color-coded scores
+   - Quick filtering and sorting
+
+✅ Detailed Candidate View
+   - Score breakdowns with charts
+   - Matched vs missing skills
+   - Strengths and weaknesses
+   - Executive summary
+
+✅ Interactive AI Chat
+   - Ask questions about candidates
+   - Get hiring recommendations
+   - Interview question suggestions
+   - Risk assessment
+
+
+🛠️ TECHNOLOGY STACK
+═══════════════════════════════════════════════════════════════════════════════
+
+FRONTEND:
+  • React 18              - UI framework
+  • Material-UI 5         - Component library
+  • Axios                 - HTTP client
+  • React Scripts         - Build tooling
+
+BACKEND:
+  • FastAPI               - Web framework
+  • Uvicorn               - ASGI server
+  • PyPDF2                - PDF processing
+  • OpenAI SDK            - LLM integration
+  • Pydantic              - Data validation
+
+AI/LLM:
+  • Ollama (recommended)  - Local LLM runtime
+  • qwen2.5:7b           - Default model
+  • OpenAI API           - Alternative option
+  • LM Studio            - Alternative option
+
+
+📊 API ENDPOINTS
+═══════════════════════════════════════════════════════════════════════════════
+
+GET     /                           - Health check
+POST    /api/job-description        - Save job description
+GET     /api/job-description        - Get job description
+POST    /api/upload-resume          - Upload and analyze resume
+GET     /api/results                - Get all analysis results
+GET     /api/result/{candidate_id}  - Get specific candidate
+POST    /api/ask                    - Ask question about candidate
+DELETE  /api/results                - Clear all results
+
+
+🚀 QUICK START COMMANDS
+═══════════════════════════════════════════════════════════════════════════════
+
+INSTALLATION:
+  install_backend.bat              - Install Python dependencies
+  install_frontend.bat             - Install Node dependencies
+
+TESTING:
+  cd backend && python test_setup.py    - Test backend setup
+
+RUNNING:
+  start_backend.bat                - Start API server (port 8000)
+  start_frontend.bat               - Start React app (port 3000)
+
+MANUAL START:
+  cd backend && python main.py     - Start backend manually
+  cd frontend && npm start         - Start frontend manually
+
+
+💡 USAGE WORKFLOW
+═══════════════════════════════════════════════════════════════════════════════
+
+Step 1: Set Job Description
+  → Open http://localhost:3000
+  → Go to "Job Description" tab
+  → Paste job requirements
+  → Click "Save"
+
+Step 2: Upload Resumes
+  → Go to "Upload Resumes" tab
+  → Click "Select PDF Files"
+  → Choose one or more PDFs
+  → Wait for analysis
+
+Step 3: Review Results
+  → Go to "Results" tab
+  → See ranked candidates
+  → Click "View" for details
+
+Step 4: Analyze Candidates
+  → View detailed scores
+  → Check skills match
+  → Read AI summary
+  → Ask questions in chat
+
+
+🔧 CONFIGURATION
+═══════════════════════════════════════════════════════════════════════════════
+
+Default (Ollama):
+  LLM_URL=http://localhost:11434/v1
+  LLM_MODEL=qwen2.5:7b
+
+For OpenAI:
+  OPENAI_API_KEY=your-key-here
+  LLM_URL=https://api.openai.com/v1
+  LLM_MODEL=gpt-4o-mini
+
+For LM Studio:
+  LLM_URL=http://localhost:1234/v1
+  LLM_MODEL=your-model-name
+
+Create backend/.env file with your settings.
+
+
+📈 SCORING SYSTEM
+═══════════════════════════════════════════════════════════════════════════════
+
+Overall Score = Weighted Average:
+  • Skills Match:      40%
+  • Experience Match:  35%
+  • Education Match:   25%
+
+Score Ranges:
+  85-100%  🟢  Excellent - Strong hire
+  70-84%   🟢  Strong - Recommend interview
+  60-69%   🟡  Good - Consider interview
+  45-59%   🟠  Moderate - Review carefully
+  0-44%    🔴  Poor - Likely not suitable
+
+
+🎓 LEARNING RESOURCES
+═══════════════════════════════════════════════════════════════════════════════
+
+React:           https://react.dev/
+Material-UI:     https://mui.com/
+FastAPI:         https://fastapi.tiangolo.com/
+Ollama:          https://ollama.ai/
+
+
+📞 SUPPORT
+═══════════════════════════════════════════════════════════════════════════════
+
+Issues? Check these files:
+  1. START_HERE.md         - Complete guide
+  2. DEPENDENCY_NOTES.md   - About warnings
+  3. SETUP_GUIDE.md        - Troubleshooting
+
+Common Issues:
+  • Backend won't start     → Check Ollama is running
+  • Frontend errors         → Run npm install again
+  • PDF upload fails        → Set job description first
+  • Dependency warnings     → Safe to ignore (see DEPENDENCY_NOTES.md)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                            🎉 READY TO START! 🎉
+═══════════════════════════════════════════════════════════════════════════════
+
+Next steps:
+  1. Read START_HERE.md
+  2. Run: start_backend.bat
+  3. Run: start_frontend.bat
+  4. Open: http://localhost:3000
+  5. Start analyzing resumes!
+
+Happy hiring! 🚀

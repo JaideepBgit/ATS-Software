@@ -1,0 +1,221 @@
+================================================================================
+                        BEFORE vs AFTER COMPARISON
+================================================================================
+
+SCENARIO: You save a "Data Scientist at Manhattan Associates" job description
+          and upload your resume for analysis.
+
+================================================================================
+                              BEFORE THE FIX
+================================================================================
+
+CANDIDATE DETAIL VIEW:
+----------------------
+┌─────────────────────────────────────────────────────────────┐
+│ Jaideep Bommidi                                             │
+│ resume.pdf                                                  │
+│                                                             │
+│ [Overall Score: 75.5%] [MAYBE - Improvements needed]       │
+│                                                             │
+│ Executive Summary:                                          │
+│ Jaideep has extensive ML experience but lacks critical     │
+│ skills such as leadership experience, specific cloud       │
+│ platform expertise, and industry-specific knowledge.        │
+│                                                             │
+│ Missing Skills:                                             │
+│ • Azure cloud platform                                      │
+│ • Kubernetes orchestration                                  │
+│ • Team leadership experience                                │
+│ • PhD or equivalent research experience                     │
+│ • Healthcare domain knowledge                               │
+│                                                             │
+│ Weaknesses:                                                 │
+│ • No explicit leadership or mentoring experience for        │
+│   Principal-level role                                      │
+│ • Limited cloud experience (only AWS, missing Azure/GCP)    │
+│ • No healthcare/medical domain experience                   │
+└─────────────────────────────────────────────────────────────┘
+
+PROBLEMS:
+❌ No company or role shown at top
+❌ Analysis mentions "Principal-level role" (WRONG!)
+❌ Missing skills include "Healthcare domain knowledge" (WRONG!)
+❌ References "Azure cloud platform" (not in Data Scientist job)
+❌ Mentions "PhD or equivalent" (not required for Data Scientist)
+❌ User is confused - this doesn't match the job they uploaded!
+
+BACKEND LOGS:
+-------------
+[DEBUG] Job description saved:
+  Company: 'Manhattan Associates'
+  Role: 'Data Scientist'
+  Job Desc Length: 2543
+
+[DEBUG] Analyzing resume with:
+  Company: 'Manhattan Associates'
+  Role: 'Data Scientist'
+
+[DEBUG] Result stored:
+  Company in result: 'Manhattan Associates'
+  Role in result: 'Data Scientist'
+
+PROBLEM: Logs show correct data, but analysis is wrong!
+
+================================================================================
+                              AFTER THE FIX
+================================================================================
+
+CANDIDATE DETAIL VIEW:
+----------------------
+┌─────────────────────────────────────────────────────────────┐
+│ Jaideep Bommidi                                             │
+│ resume.pdf                                                  │
+│ Manhattan Associates - Data Scientist          ← NEW!      │
+│                                                             │
+│ [Overall Score: 82.0%] [YES - Strong candidate]            │
+│                                                             │
+│ Executive Summary:                                          │
+│ Jaideep has strong Python and ML experience with 10 years  │
+│ in data science. Solid match for the Data Scientist role   │
+│ with proven analytics and statistical modeling skills.     │
+│                                                             │
+│ Missing Skills:                                             │
+│ • Supply chain domain knowledge                             │
+│ • Microservices architecture experience                     │
+│ • Cloud platform deployment (Azure/GCP)                     │
+│                                                             │
+│ Weaknesses:                                                 │
+│ • Limited supply chain management experience                │
+│ • Could benefit from more cloud deployment experience       │
+│ • No specific mention of forecasting/simulation work       │
+└─────────────────────────────────────────────────────────────┘
+
+IMPROVEMENTS:
+✅ Company and role clearly shown: "Manhattan Associates - Data Scientist"
+✅ Analysis references correct job title (Data Scientist)
+✅ Missing skills match the actual job requirements
+✅ Weaknesses are relevant to Data Scientist position
+✅ No mention of wrong roles (Principal, Healthcare, etc.)
+✅ User can immediately see which job this analysis is for
+
+BACKEND LOGS:
+-------------
+[DEBUG] ===== JOB DESCRIPTION SAVED =====
+[DEBUG] Company: 'Manhattan Associates'
+[DEBUG] Role: 'Data Scientist'
+[DEBUG] Job Desc Length: 2543
+[DEBUG] Job Desc (first 200 chars): Data Scientist
+Manhattan Associates · Atlanta, GA (Hybrid)
+...
+[DEBUG] ====================================
+
+[DEBUG] ===== ANALYZING RESUME =====
+[DEBUG] File: resume.pdf
+[DEBUG] Company: 'Manhattan Associates'
+[DEBUG] Role: 'Data Scientist'
+[DEBUG] Job Desc (first 200 chars): Data Scientist
+Manhattan Associates...
+[ATS] analyze_resume called with company='Manhattan Associates', role='Data Scientist'
+
+[DEBUG] ===== RESULT CREATED =====
+[DEBUG] Candidate ID: Jaideep Bommidi_2025-11-11T10:30:00
+[DEBUG] Company in result: 'Manhattan Associates'
+[DEBUG] Role in result: 'Data Scientist'
+[DEBUG] Overall Score: 82.0%
+[DEBUG] Recommendation: YES - Strong candidate
+[DEBUG] ==============================
+
+IMPROVEMENTS:
+✅ More detailed logging with clear sections
+✅ Shows job description preview to verify correct data
+✅ Tracks data flow through entire pipeline
+✅ Easy to spot if wrong data is being used
+
+================================================================================
+                          LLM PROMPT COMPARISON
+================================================================================
+
+BEFORE:
+-------
+Analyze this candidate for the job with CRITICAL attention to missing 
+skills and weaknesses.
+
+JOB DESCRIPTION:
+Data Scientist at Manhattan Associates...
+
+RESUME:
+Jaideep Bommidi...
+
+PROBLEM: LLM might use cached context or make assumptions about the role
+
+AFTER:
+------
+Analyze this candidate for the Data Scientist role at Manhattan Associates 
+with CRITICAL attention to missing skills and weaknesses.
+
+COMPANY: Manhattan Associates
+ROLE: Data Scientist
+
+JOB DESCRIPTION:
+Data Scientist at Manhattan Associates...
+
+RESUME:
+Jaideep Bommidi...
+
+IMPROVEMENT: Explicit company and role context ensures LLM knows the job
+
+================================================================================
+                          RESULTS LIST COMPARISON
+================================================================================
+
+BEFORE:
+-------
+┌──────────────────┬─────────────┬──────────┬─────────┐
+│ Candidate        │ Company-Role│ Score    │ Actions │
+├──────────────────┼─────────────┼──────────┼─────────┤
+│ Jaideep Bommidi  │ -           │ 75.5%    │ [View]  │
+│ resume.pdf       │             │          │         │
+└──────────────────┴─────────────┴──────────┴─────────┘
+
+PROBLEM: No company/role shown, hard to track which job
+
+AFTER:
+------
+┌──────────────────┬──────────────────────────────┬──────────┬─────────┐
+│ Candidate        │ Company - Role               │ Score    │ Actions │
+├──────────────────┼──────────────────────────────┼──────────┼─────────┤
+│ Jaideep Bommidi  │ Manhattan Associates -       │ 82.0%    │ [View]  │
+│ resume.pdf       │ Data Scientist               │          │         │
+└──────────────────┴──────────────────────────────┴──────────┴─────────┘
+
+IMPROVEMENT: Clear indication of which job each analysis is for
+
+================================================================================
+                              KEY TAKEAWAYS
+================================================================================
+
+WHAT WAS WRONG:
+---------------
+1. Company/role not displayed in candidate detail view
+2. LLM prompts lacked explicit job context
+3. Analysis showed results from wrong/cached job descriptions
+4. Insufficient logging made debugging difficult
+
+WHAT WAS FIXED:
+---------------
+1. ✅ Company and role prominently displayed
+2. ✅ Explicit COMPANY and ROLE fields in LLM prompts
+3. ✅ Enhanced logging throughout the pipeline
+4. ✅ Clear data flow from job description to analysis to display
+
+HOW TO VERIFY:
+--------------
+1. Save a new job description with company and role
+2. Upload a resume
+3. Check that company/role appear in:
+   - Results list (Company - Role column)
+   - Candidate detail view (below candidate name)
+   - Backend logs (throughout the process)
+4. Verify analysis content matches the job requirements
+
+================================================================================
