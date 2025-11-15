@@ -69,10 +69,16 @@ def load_recent_analyses():
                 resume_text = resume_storage.get_resume_text(full_analysis['resume_id'])
                 if resume_text:
                     resume_texts[candidate_id] = resume_text
+                    print(f"[STARTUP] Loaded resume for: {candidate_id}")
         
         print(f"[STARTUP] Loaded {len(analysis_results)} analyses into memory")
+        print(f"[STARTUP] Loaded {len(resume_texts)} resumes into memory")
+        if resume_texts:
+            print(f"[STARTUP] Sample candidate IDs: {list(resume_texts.keys())[:3]}")
     except Exception as e:
         print(f"[STARTUP ERROR] Could not load analyses: {e}")
+        import traceback
+        traceback.print_exc()
 
 
 # Load analyses on startup
@@ -745,6 +751,191 @@ async def get_tts_status():
             "status": "unavailable",
             "error": str(e)
         }
+
+
+@app.post("/api/resume/ask")
+async def ask_about_resume(request: dict):
+    """Ask questions about resume content with optional context"""
+    candidate_id = request.get('candidate_id')
+    question = request.get('question', '')
+    selected_text = request.get('selected_text', '')
+    
+    if not question or not question.strip():
+        raise HTTPException(status_code=400, detail="Question is required")
+    
+    if not candidate_id:
+        raise HTTPException(status_code=400, detail="Candidate ID is required")
+    
+    # Get resume text
+    resume_text = resume_texts.get(candidate_id, '')
+    if not resume_text:
+        raise HTTPException(status_code=404, detail="Resume not found")
+    
+    # Get analysis if available
+    analysis = analysis_results.get(candidate_id, {})
+    
+    # Build context for RAG
+    context_parts = []
+    
+    if selected_text:
+        context_parts.append(f"Selected text from resume: {selected_text}")
+    
+    context_parts.append(f"Full resume:\n{resume_text}")
+    
+    if analysis:
+        context_parts.append(f"\nAnalysis Summary:")
+        context_parts.append(f"- Overall Score: {analysis.get('overall_score', 'N/A')}%")
+        context_parts.append(f"- Skills Match: {analysis.get('skill_match_score', 'N/A')}%")
+        context_parts.append(f"- Recommendation: {analysis.get('hiring_recommendation', 'N/A')}")
+    
+    context = "\n\n".join(context_parts)
+    
+    # Use RAG service to answer
+    try:
+        # Build context dict for RAG
+        context_dict = {
+            "resume": resume_text,
+            "selected_text": selected_text,
+            "analysis": analysis
+        }
+        
+        answer = rag_service.ask_with_rag(
+            query=question,
+            context=context_dict,
+            llm_service=ats_service
+        )
+        
+        return {
+            "status": "success",
+            "question": question,
+            "answer": answer,
+            "has_context": bool(selected_text)
+        }
+    except Exception as e:
+        print(f"[RESUME Q&A ERROR] {str(e)}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Failed to answer question: {str(e)}")
+
+
+@app.get("/api/debug/resumes")
+async def debug_resumes():
+    """Debug endpoint to see what's in memory"""
+    return {
+        "status": "success",
+        "resume_texts_keys": list(resume_texts.keys()),
+        "resume_texts_count": len(resume_texts),
+        "analysis_results_keys": list(analysis_results.keys()),
+        "analysis_results_count": len(analysis_results),
+        "sample_resume_text_length": {k: len(v) for k, v in list(resume_texts.items())[:3]}
+    }
+
+
+@app.get("/api/resume/pdf/{candidate_id:path}")
+async def get_resume_pdf(candidate_id: str):
+    """Get PDF file for viewing"""
+    from urllib.parse import unquote
+    import os
+    
+    decoded_id = unquote(candidate_id)
+    
+    print(f"[RESUME PDF] Requested candidate_id: {decoded_id}")
+    print(f"[RESUME PDF] Available analyses: {list(analysis_results.keys())[:3]}")
+    
+    # Get the analysis to find the resume_id
+    if decoded_id not in analysis_results:
+        print(f"[RESUME PDF] Analysis not found in memory for: {decoded_id}")
+        raise HTTPException(status_code=404, detail=f"Analysis not found for: {decoded_id}")
+    
+    analysis = analysis_results[decoded_id]
+    
+    # Get resume info from storage
+    try:
+        # Try to get resume_id from analysis
+        # First check if it's stored in the analysis
+        resume_id = None
+        
+        # Search through all resumes to find matching candidate
+        resumes = resume_storage.list_resumes()
+        for resume in resumes:
+            if resume['candidate_name'] == analysis.get('candidate_name'):
+                resume_id = resume['resume_id']
+                break
+        
+        if not resume_id:
+            raise HTTPException(status_code=404, detail="Resume PDF not found")
+        
+        # Get resume metadata to find PDF path
+        resume_info = resume_storage.get_resume(resume_id)
+        
+        if not resume_info or 'pdf_path' not in resume_info:
+            raise HTTPException(status_code=404, detail="PDF path not found")
+        
+        pdf_path = resume_info['pdf_path']
+        
+        if not os.path.exists(pdf_path):
+            raise HTTPException(status_code=404, detail=f"PDF file not found: {pdf_path}")
+        
+        print(f"[RESUME PDF] Serving PDF: {pdf_path}")
+        
+        return FileResponse(
+            pdf_path,
+            media_type="application/pdf",
+            filename=f"{analysis.get('candidate_name', 'resume')}.pdf"
+        )
+        
+    except Exception as e:
+        print(f"[RESUME PDF ERROR] {str(e)}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Error serving PDF: {str(e)}")
+
+
+@app.get("/api/resume/text/{candidate_id:path}")
+async def get_resume_text(candidate_id: str):
+    """Get full resume text for viewing"""
+    from urllib.parse import unquote
+    
+    # URL decode the candidate_id
+    decoded_id = unquote(candidate_id)
+    
+    print(f"[RESUME TEXT] Requested candidate_id (raw): {candidate_id}")
+    print(f"[RESUME TEXT] Requested candidate_id (decoded): {decoded_id}")
+    print(f"[RESUME TEXT] Available candidates: {list(resume_texts.keys())[:5]}")
+    
+    # Try exact match first
+    if decoded_id in resume_texts:
+        print(f"[RESUME TEXT] Exact match found!")
+        return {
+            "status": "success",
+            "candidate_id": decoded_id,
+            "text": resume_texts[decoded_id],
+            "has_analysis": decoded_id in analysis_results
+        }
+    
+    # Try to find similar keys
+    similar_keys = [k for k in resume_texts.keys() if decoded_id in k or k in decoded_id]
+    print(f"[RESUME TEXT] Similar keys found: {similar_keys}")
+    
+    if similar_keys:
+        # Use the first similar key
+        actual_key = similar_keys[0]
+        print(f"[RESUME TEXT] Using similar key: {actual_key}")
+        return {
+            "status": "success",
+            "candidate_id": actual_key,
+            "text": resume_texts[actual_key],
+            "has_analysis": actual_key in analysis_results
+        }
+    
+    raise HTTPException(status_code=404, detail=f"Resume not found for: {decoded_id}. Available: {list(resume_texts.keys())[:3]}")
+    
+    return {
+        "status": "success",
+        "candidate_id": decoded_id,
+        "text": resume_texts[decoded_id],
+        "has_analysis": decoded_id in analysis_results
+    }
 
 
 # New Storage Management Endpoints

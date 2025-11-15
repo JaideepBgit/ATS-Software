@@ -22,5 +22,53 @@
     "role_name": "AI & Security Process Engineer - USDS ",
     "created_at": "2025-11-14T00:05:04.846460",
     "analysis_count": 1
+  },
+  "27005869": {
+    "company_name": "Uber",
+    "role_name": "Machine Learning Engineer II",
+    "created_at": "2025-11-14T22:04:06.438828",
+    "analysis_count": 1
+  },
+  "a9a1eee6": {
+    "company_name": "Uber",
+    "role_name": "Machine Learning Engineer II",
+    "created_at": "2025-11-14T22:17:23.026927",
+    "analysis_count": 0
+  },
+  "59829768": {
+    "company_name": "Uber",
+    "role_name": "Machine Learning Engineer II",
+    "created_at": "2025-11-14T22:17:28.339533",
+    "analysis_count": 0
+  },
+  "f0d322ee": {
+    "company_name": "Uber",
+    "role_name": "Machine Learning Engineer II",
+    "created_at": "2025-11-14T22:17:36.669622",
+    "analysis_count": 2
+  },
+  "4fc3fad5": {
+    "company_name": "Infosys",
+    "role_name": "Data Analyst with Pyspark & AB Testing",
+    "created_at": "2025-11-15T10:34:37.037401",
+    "analysis_count": 1
+  },
+  "957fa04f": {
+    "company_name": "Infosys",
+    "role_name": "Data Scientist",
+    "created_at": "2025-11-15T10:49:36.868668",
+    "analysis_count": 3
+  },
+  "f31cff42": {
+    "company_name": "",
+    "role_name": "",
+    "created_at": "2025-11-15T11:34:37.181955",
+    "analysis_count": 1
+  },
+  "e6f27f7b": {
+    "company_name": "",
+    "role_name": "",
+    "created_at": "2025-11-15T11:37:14.965912",
+    "analysis_count": 1
   }
 }

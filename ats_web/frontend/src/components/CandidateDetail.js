@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import {
-  Paper, Typography, Box, Grid, Chip, Divider, LinearProgress, Collapse, IconButton
+  Paper, Typography, Box, Grid, Chip, Divider, LinearProgress, Collapse, IconButton, Button, Dialog, DialogContent, DialogTitle
 } from '@mui/material';
-import { ExpandMore as ExpandMoreIcon, Psychology as PsychologyIcon } from '@mui/icons-material';
+import { ExpandMore as ExpandMoreIcon, Psychology as PsychologyIcon, Description as DescriptionIcon, Close as CloseIcon } from '@mui/icons-material';
 import ChatInterface from './ChatInterface';
 import InlineFeedback from './InlineFeedback';
 import TTSButton from './TTSButton';
+import PDFResumeViewer from './PDFResumeViewer';
 
 function CandidateDetail({ candidate, jobDescription }) {
   const [thinkingExpanded, setThinkingExpanded] = useState(false);
+  const [showResumeViewer, setShowResumeViewer] = useState(false);
 
   const ScoreBar = ({ label, value, color }) => (
     <Box sx={{ mb: 2 }}>
@@ -81,6 +83,23 @@ function CandidateDetail({ candidate, jobDescription }) {
             variant="button"
             size="medium"
           />
+          <Button
+            variant="contained"
+            startIcon={<DescriptionIcon />}
+            onClick={() => setShowResumeViewer(true)}
+            sx={{
+              backgroundColor: '#967CB2',
+              color: '#FBFAFA',
+              fontWeight: 600,
+              height: 36,
+              px: 2,
+              '&:hover': {
+                backgroundColor: '#7d5f9a',
+              }
+            }}
+          >
+            View Interactive Resume
+          </Button>
         </Box>
 
         <Divider sx={{ my: 3 }} />
@@ -437,6 +456,42 @@ function CandidateDetail({ candidate, jobDescription }) {
       </Paper>
 
       <ChatInterface candidate={candidate} jobDescription={jobDescription} />
+
+      {/* Resume Viewer Dialog */}
+      <Dialog 
+        open={showResumeViewer} 
+        onClose={() => setShowResumeViewer(false)}
+        maxWidth="xl"
+        fullWidth
+        PaperProps={{
+          sx: {
+            height: '90vh',
+            maxHeight: '90vh'
+          }
+        }}
+      >
+        <DialogTitle sx={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center',
+          backgroundColor: '#3B1C55',
+          color: '#FBFAFA'
+        }}>
+          <Typography variant="h6">Interactive Resume Viewer</Typography>
+          <IconButton 
+            onClick={() => setShowResumeViewer(false)}
+            sx={{ color: '#FBFAFA' }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ p: 0, overflow: 'hidden' }}>
+          <PDFResumeViewer 
+            candidateId={`${candidate.candidate_name}_${candidate.timestamp}`}
+            candidateName={candidate.candidate_name}
+          />
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 }

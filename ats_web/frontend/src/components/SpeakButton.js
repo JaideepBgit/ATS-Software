@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Volume2, VolumeX, Loader } from 'lucide-react';
+import { IconButton, Button, CircularProgress, Tooltip } from '@mui/material';
+import { VolumeUp, VolumeOff } from '@mui/icons-material';
 
 const SpeakButton = ({ text, size = 'md', variant = 'icon' }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -59,64 +60,57 @@ const SpeakButton = ({ text, size = 'md', variant = 'icon' }) => {
     }
   };
 
-  const sizeClasses = {
-    sm: 'w-6 h-6',
-    md: 'w-8 h-8',
-    lg: 'w-10 h-10'
-  };
-
   const iconSizes = {
-    sm: 14,
-    md: 18,
-    lg: 22
+    sm: 'small',
+    md: 'medium',
+    lg: 'large'
   };
 
   if (variant === 'icon') {
     return (
-      <button
-        onClick={handleSpeak}
-        disabled={isLoading}
-        className={`${sizeClasses[size]} flex items-center justify-center rounded-full 
-          ${isPlaying ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'} 
-          text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-        title={isPlaying ? 'Stop' : 'Speak'}
-      >
-        {isLoading ? (
-          <Loader size={iconSizes[size]} className="animate-spin" />
-        ) : isPlaying ? (
-          <VolumeX size={iconSizes[size]} />
-        ) : (
-          <Volume2 size={iconSizes[size]} />
-        )}
-      </button>
+      <Tooltip title={isPlaying ? 'Stop' : 'Speak'}>
+        <IconButton
+          onClick={handleSpeak}
+          disabled={isLoading}
+          size={iconSizes[size]}
+          sx={{
+            backgroundColor: isPlaying ? '#f44336' : '#2196f3',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: isPlaying ? '#d32f2f' : '#1976d2',
+            },
+            '&:disabled': {
+              backgroundColor: '#bdbdbd',
+            }
+          }}
+        >
+          {isLoading ? (
+            <CircularProgress size={20} sx={{ color: 'white' }} />
+          ) : isPlaying ? (
+            <VolumeOff />
+          ) : (
+            <VolumeUp />
+          )}
+        </IconButton>
+      </Tooltip>
     );
   }
 
   return (
-    <button
+    <Button
       onClick={handleSpeak}
       disabled={isLoading}
-      className={`flex items-center gap-2 px-4 py-2 rounded-lg 
-        ${isPlaying ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'} 
-        text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+      variant="contained"
+      startIcon={isLoading ? <CircularProgress size={18} sx={{ color: 'white' }} /> : isPlaying ? <VolumeOff /> : <VolumeUp />}
+      sx={{
+        backgroundColor: isPlaying ? '#f44336' : '#2196f3',
+        '&:hover': {
+          backgroundColor: isPlaying ? '#d32f2f' : '#1976d2',
+        }
+      }}
     >
-      {isLoading ? (
-        <>
-          <Loader size={18} className="animate-spin" />
-          <span>Loading...</span>
-        </>
-      ) : isPlaying ? (
-        <>
-          <VolumeX size={18} />
-          <span>Stop</span>
-        </>
-      ) : (
-        <>
-          <Volume2 size={18} />
-          <span>Speak</span>
-        </>
-      )}
-    </button>
+      {isLoading ? 'Loading...' : isPlaying ? 'Stop' : 'Speak'}
+    </Button>
   );
 };
 
